@@ -1,6 +1,7 @@
 'use strict';
 const assert = require('assert');
 
+
 // This is an object that has types of jobs and the values each provide.
 const jobTypes = {
   pilot: 'MAV',
@@ -11,10 +12,66 @@ const jobTypes = {
 
 // Your code will go here
 
+//create crewmember class
+ class CrewMember {
+//add constructor with variables
+  constructor(name, job, specialSkill,) {
+
+      this.name = name;
+      this.job = job;
+      this.specialSkill = specialSkill;
+      this.ship = null;
+
+  }
+
+  //create entership method/push to array in ship and add to ship variable
+  enterShip = (newCrewMember) => {
+    newCrewMember.crew.push(this);
+    //console.log("crew length = " + this.crew.length);
+    this.ship = newCrewMember;
+  }
+
+}
+
+//create ship class and variables
+class Ship {
+
+    constructor (name, type, ability){
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew=[];
+    
+    }
+
+    //set up missionstatement method
+    missionStatement = () => {
+      console.log(this.crew[0]);
+      if(this.crew[0] == undefined){
+        return "Can't perform a mission yet.";
+      }
+      return this.ability;
+    }
+}
+
+const main = () => {
+
+  let mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+  const crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
+  crewMember1.enterShip(mav);
+  //console.log(" crewMember1.enterShip(mav) = " + crewMember1.enterShip(mav));
+  //console.log("crewMember1.ship = " + crewMember1.ship);
+  //console.log("mav.crew.length = " + mav.crew.length);
+  //console.log("mav.crew[0] = " + mav.crew[0]);
+
+  //console.log("mav" +  mav);
+  console.log(` testing ship which is mav.crew[0] =  ${mav.crew[0]}`);
+  console.log(mav.crew[0]);
+
+}
 
 
-
-
+main();
 
 
 // Begin by reading the tests and building a function that will full each one.
